@@ -10,7 +10,6 @@ import java.util.List;
 
 @Path("departamentos")
 public class DepartamentoResource {
-    DepartamentoService departamentoService = new DepartamentoService();
     DepartamentoServiceImpl departamentoService1 = DepartamentoServiceImpl.getInstance();
 
     @GET
@@ -41,6 +40,10 @@ public class DepartamentoResource {
         return departamentoService1.obter(id);
     }
 
-
+    @DELETE
+    @Path("/{departamentoId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void remover(@PathParam("departamentoId") Long id){
+        departamentoService1.remover(id);
+    }
 }
-
