@@ -4,13 +4,15 @@ import jakarta.ws.rs.Consumes;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement
 @Entity
 @Table(name= "tb_funcionario")
 @SequenceGenerator(name = "funcionario", sequenceName = "SQ_TB_FUNCIONARIO", allocationSize = 1)
-public class Funcionario {
+public class Funcionario implements Serializable {
 
+    private static final long serialVersionUID = 1592313067732063043L;
     @Id
     @GeneratedValue(generator = "funcionario", strategy = GenerationType.SEQUENCE)
     private Long id;
