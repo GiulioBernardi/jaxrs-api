@@ -1,15 +1,32 @@
 package br.com.evo.giulio.enterprise.model;
 
+import jakarta.ws.rs.Consumes;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@Entity
+@Table(name= "tb_funcionario")
+@SequenceGenerator(name = "funcionario", sequenceName = "SQ_TB_FUNCIONARIO", allocationSize = 1)
 public class Funcionario {
 
+    @Id
+    @GeneratedValue(generator = "funcionario", strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @Column(name = "nm_funcionario")
     private String nome;
+
+    @Column(name = "ds_foto_funcionario")
     private String foto;
 
+    @Column(name = "ds_rg_funcionario")
     private String rg;
 
 
+    @Column(name = "ds_depto_funcionario")
+    //TODO relationship between this class and Departamento class
     private String departamento;
 
     public Funcionario() {
