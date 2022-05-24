@@ -27,14 +27,15 @@ public class Funcionario implements Serializable {
     private String rg;
 
 
-    @Column(name = "ds_depto_funcionario")
-    //TODO relationship between this class and Departamento class
-    private String departamento;
+    @ManyToOne
+    @JoinColumn(name = "departamentoId")
+    private Departamento departamento;
+    //TODO column ative with boolean type
 
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String foto, String rg, String departamento) {
+    public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
@@ -74,11 +75,11 @@ public class Funcionario implements Serializable {
         this.rg = rg;
     }
 
-    public String getDepartamento() {
+    public Departamento getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
 }

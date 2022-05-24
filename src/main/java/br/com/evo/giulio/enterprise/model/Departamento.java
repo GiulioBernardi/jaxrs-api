@@ -4,6 +4,7 @@ package br.com.evo.giulio.enterprise.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 @XmlRootElement
 @Entity
@@ -21,6 +22,11 @@ public class Departamento implements Serializable {
 
     @Column(name = "sg_depto")
     private String sigla;
+
+    @OneToMany(mappedBy = "departamento")
+    private List<Funcionario> funcionarios;
+
+    //TODO column ative with boolean type
 
     public Departamento() {
     }
@@ -56,6 +62,8 @@ public class Departamento implements Serializable {
         this.sigla = sigla;
     }
 
+
+    //TODO remove method toString
     @Override
     public String toString() {
         return "";

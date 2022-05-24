@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseClass {
-
+//TODO delete this class
     private static Map<Long, Departamento> departamentos = new HashMap<>();
     private static Map<Long, Funcionario> funcionarios = new HashMap<>();
 
