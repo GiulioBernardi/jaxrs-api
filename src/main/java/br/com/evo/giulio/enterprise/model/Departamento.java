@@ -27,15 +27,18 @@ public class Departamento implements Serializable {
     private List<Funcionario> funcionarios;
 
     //TODO column ative with boolean type
+    @Column(name = "st_departamento")
+    private Boolean status;
 
     public Departamento() {
     }
 
 
-    public Departamento(Long id, String nome, String sigla) {
+    public Departamento(Long id, String nome, String sigla, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
+        this.status = status;
     }
 
     public Long getId() {
@@ -60,12 +63,5 @@ public class Departamento implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
-    }
-
-
-    //TODO remove method toString
-    @Override
-    public String toString() {
-        return "";
     }
 }

@@ -1,5 +1,6 @@
 package br.com.evo.giulio.enterprise.model;
 
+import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 
 import javax.persistence.*;
@@ -30,17 +31,28 @@ public class Funcionario implements Serializable {
     @ManyToOne
     @JoinColumn(name = "departamentoId")
     private Departamento departamento;
-    //TODO column ative with boolean type
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @Column(name = "st_funcionario")
+    private Boolean status;
 
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento) {
+    public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
         this.rg = rg;
         this.departamento = departamento;
+        this.status = status;
     }
 
     public Long getId() {
