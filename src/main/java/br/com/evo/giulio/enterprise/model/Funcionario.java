@@ -3,9 +3,7 @@ package br.com.evo.giulio.enterprise.model;
 
 public class Funcionario {
 
-
     private Long id;
-
     private String nome;
     private String foto;
 

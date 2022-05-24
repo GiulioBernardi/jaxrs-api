@@ -1,6 +1,7 @@
 package br.com.evo.giulio.enterprise;
 
 
+import br.com.evo.giulio.enterprise.service.impl.DepartamentoServiceImpl;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -18,6 +19,8 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
+
+    DepartamentoServiceImpl departamentoService1 = DepartamentoServiceImpl.getInstance();
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
