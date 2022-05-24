@@ -40,4 +40,11 @@ public class FuncionarioResource {
         return funcionarioService.obter(id);
     }
 
+    @DELETE
+    @Path("/{funcionarioId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void remover(@PathParam("funcionarioId") Long id){
+        funcionarioService.remover(id);
+    }
+
 }
