@@ -1,8 +1,6 @@
 package br.com.evo.giulio.enterprise.dao.impl;
 
-import br.com.evo.giulio.enterprise.model.Departamento;
 import br.com.evo.giulio.enterprise.model.Funcionario;
-import jdk.nashorn.internal.runtime.FunctionInitializer;
 
 public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
 

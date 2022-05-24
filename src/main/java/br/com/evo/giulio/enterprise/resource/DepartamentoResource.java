@@ -37,8 +37,10 @@ public class DepartamentoResource {
     @GET
     @Path("/{departamentoId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Departamento test(@PathParam("departamentoId") Long departamentoId){
-        return departamentoService1.obter(departamentoId);
+    public Departamento obter(@PathParam("departamentoId") Long id){
+        return departamentoService1.obter(id);
     }
+
+
 }
 
