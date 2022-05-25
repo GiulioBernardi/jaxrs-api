@@ -38,13 +38,4 @@ public class DepartamentoDAOImpl extends HibernateGenericDAO<Departamento, Long>
         query.setParameter("id", id);
         query.executeUpdate();
     }
-
-
-//    public void remover(PK id, EntityManager entityManager) {
-//        T instancia = this.obterPorId(id, entityManager);
-//        entityManager.remove(instancia);
-//    }
-
-
-
 }
