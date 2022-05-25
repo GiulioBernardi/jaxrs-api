@@ -20,7 +20,7 @@ public class FuncionarioResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public void addDepartamento(Funcionario funcionario) {
+    public void adicionar(Funcionario funcionario) {
         funcionarioService.inserir(funcionario);
     }
 
@@ -28,7 +28,7 @@ public class FuncionarioResource {
     @Path("/{funcionarioId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void updateDepto(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario){
+    public void atualizar(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario){
         funcionario.setId(funcionarioId);
         funcionarioService.atualizar(funcionario);
     }

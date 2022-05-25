@@ -79,7 +79,6 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
 
     @Override
     public List<Funcionario> listar() {
-        //TODO list only regists that has 'status = true'
         List<Funcionario> funcionarios = null;
 
         try {
