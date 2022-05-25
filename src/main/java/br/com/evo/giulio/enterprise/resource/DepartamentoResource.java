@@ -15,7 +15,7 @@ public class DepartamentoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Departamento> listar(){
-        return departamentoService1.listar();
+        return departamentoService1.logicalList();
     }
 
     @POST
@@ -44,6 +44,6 @@ public class DepartamentoResource {
     @Path("/{departamentoId}")
     @Produces(MediaType.APPLICATION_JSON)
     public void remover(@PathParam("departamentoId") Long id){
-        departamentoService1.remover(id);
+        departamentoService1.logicalDelete(id);
     }
 }

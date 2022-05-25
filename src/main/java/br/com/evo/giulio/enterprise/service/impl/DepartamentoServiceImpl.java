@@ -90,4 +90,30 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
 
         return departamentos;
     }
+
+    //TODO list only regists that has 'status = true'
+    public List<Departamento> logicalList(){
+        List<Departamento> departamentos = null;
+
+        try {
+            departamentos = departamentoDAO.logicalList(getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeEntityManager();
+        }
+
+        return departamentos;
+    }
+
+    public void logicalDelete(Long id){
+        try {
+            departamentoDAO.logicalDelete(id, getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+            getEntityManager().getTransaction().rollback();
+        } finally {
+            closeEntityManager();
+        }
+    }
 }
