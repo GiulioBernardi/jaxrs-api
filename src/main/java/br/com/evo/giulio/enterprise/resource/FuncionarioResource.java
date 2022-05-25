@@ -15,7 +15,7 @@ public class FuncionarioResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Funcionario> listar(){
-        return funcionarioService.listar();
+        return funcionarioService.logicalList();
     }
 
     @POST

@@ -104,4 +104,17 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         }
     }
 
+    public List<Funcionario> logicalList(){
+        List<Funcionario> funcionarios = null;
+
+        try {
+            funcionarios = funcionarioDAO.logicalList(getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeEntityManager();
+        }
+
+        return funcionarios;
+    }
 }

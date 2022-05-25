@@ -91,7 +91,6 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
         return departamentos;
     }
 
-    //TODO list only regists that has 'status = true'
     public List<Departamento> logicalList(){
         List<Departamento> departamentos = null;
 
