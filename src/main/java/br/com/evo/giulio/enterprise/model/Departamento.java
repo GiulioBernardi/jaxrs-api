@@ -4,6 +4,7 @@ package br.com.evo.giulio.enterprise.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
@@ -17,25 +18,36 @@ public class Departamento implements Serializable {
     @GeneratedValue(generator = "departamento", strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "nm_depto")
+    @Column(name = "nm_depto", nullable = false, length = 50)
     private String nome;
 
-    @Column(name = "sg_depto")
+    @Column(name = "sg_depto", length = 3)
     private String sigla;
 
-    @OneToMany(mappedBy = "departamento")
+    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
     private List<Funcionario> funcionarios;
 
-    //TODO column ative with boolean type
+    @Column(name = "st_departamento")
+    private Boolean status = true;
 
     public Departamento() {
     }
 
-
-    public Departamento(Long id, String nome, String sigla) {
+    public Departamento(Long id, String nome, String sigla, List<Funcionario> funcionarios, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
+        this.funcionarios = funcionarios;
+        this.status = status;
+    }
+
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public Long getId() {
@@ -60,12 +72,5 @@ public class Departamento implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
-    }
-
-
-    //TODO remove method toString
-    @Override
-    public String toString() {
-        return "";
     }
 }

@@ -91,4 +91,29 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
 
         return funcionarios;
     }
+
+    public void logicalDelete(Long id){
+        try {
+            funcionarioDAO.logicalDelete(id, getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+            getEntityManager().getTransaction().rollback();
+        } finally {
+            closeEntityManager();
+        }
+    }
+
+    public List<Funcionario> logicalList(){
+        List<Funcionario> funcionarios = null;
+
+        try {
+            funcionarios = funcionarioDAO.logicalList(getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeEntityManager();
+        }
+
+        return funcionarios;
+    }
 }

@@ -15,12 +15,12 @@ public class FuncionarioResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Funcionario> listar(){
-        return funcionarioService.listar();
+        return funcionarioService.logicalList();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public void addDepartamento(Funcionario funcionario) {
+    public void adicionar(Funcionario funcionario) {
         funcionarioService.inserir(funcionario);
     }
 
@@ -28,7 +28,7 @@ public class FuncionarioResource {
     @Path("/{funcionarioId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void updateDepto(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario){
+    public void atualizar(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario){
         funcionario.setId(funcionarioId);
         funcionarioService.atualizar(funcionario);
     }
@@ -44,7 +44,7 @@ public class FuncionarioResource {
     @Path("/{funcionarioId}")
     @Produces(MediaType.APPLICATION_JSON)
     public void remover(@PathParam("funcionarioId") Long id){
-        funcionarioService.remover(id);
+        funcionarioService.logicalDelete(id);
     }
 
 }

@@ -1,7 +1,5 @@
 package br.com.evo.giulio.enterprise.model;
 
-import jakarta.ws.rs.Consumes;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -17,30 +15,40 @@ public class Funcionario implements Serializable {
     @GeneratedValue(generator = "funcionario", strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "nm_funcionario")
+    @Column(name = "nm_funcionario", length = 55, nullable = false)
     private String nome;
 
     @Column(name = "ds_foto_funcionario")
     private String foto;
 
-    @Column(name = "ds_rg_funcionario")
+    @Column(name = "ds_rg_funcionario", length = 15, nullable = false, updatable = false)
     private String rg;
-
 
     @ManyToOne
     @JoinColumn(name = "departamentoId")
     private Departamento departamento;
-    //TODO column ative with boolean type
+
+    @Column(name = "st_funcionario", updatable = false)
+    private Boolean status = true;
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento) {
+    public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
         this.rg = rg;
         this.departamento = departamento;
+        this.status = true;
     }
 
     public Long getId() {

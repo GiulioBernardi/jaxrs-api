@@ -10,11 +10,11 @@ import java.util.Map;
 //TODO delete this class
 public class DepartamentoService {
 
-    public DepartamentoService(){
-        departamentos.put(1L, new Departamento(1l, "Desenvolvimento", "dev"));
-        departamentos.put(2L, new Departamento(2l, "Financeiro", "fin"));
-        departamentos.put(3L, new Departamento(3l, "Juridico", "jur"));
-    }
+//    public DepartamentoService(){
+//        departamentos.put(1L, new Departamento(1l, "Desenvolvimento", "dev"));
+//        departamentos.put(2L, new Departamento(2l, "Financeiro", "fin"));
+//        departamentos.put(3L, new Departamento(3l, "Juridico", "jur"));
+//    }
 
     private Map<Long, Departamento> departamentos = DatabaseClass.getDepartamentos();
 
