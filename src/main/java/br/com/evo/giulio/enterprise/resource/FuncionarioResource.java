@@ -44,7 +44,7 @@ public class FuncionarioResource {
     @Path("/{funcionarioId}")
     @Produces(MediaType.APPLICATION_JSON)
     public void remover(@PathParam("funcionarioId") Long id){
-        funcionarioService.remover(id);
+        funcionarioService.logicalDelete(id);
     }
 
 }

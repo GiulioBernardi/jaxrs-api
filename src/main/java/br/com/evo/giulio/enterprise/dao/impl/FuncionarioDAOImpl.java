@@ -2,6 +2,9 @@ package br.com.evo.giulio.enterprise.dao.impl;
 
 import br.com.evo.giulio.enterprise.model.Funcionario;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
 
     private static FuncionarioDAOImpl instance = null;
@@ -15,5 +18,11 @@ public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
 
     public FuncionarioDAOImpl() {
         super(Funcionario.class);
+    }
+
+    public void logicalDelete(Long id, EntityManager entityManager) {
+        Query query= entityManager.createQuery("Update Funcionario f Set f.status = false WHERE f.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }
