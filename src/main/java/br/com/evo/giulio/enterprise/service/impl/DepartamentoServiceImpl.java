@@ -2,6 +2,7 @@ package br.com.evo.giulio.enterprise.service.impl;
 
 import br.com.evo.giulio.enterprise.dao.impl.DepartamentoDAOImpl;
 import br.com.evo.giulio.enterprise.model.Departamento;
+import br.com.evo.giulio.enterprise.model.Funcionario;
 import br.com.evo.giulio.enterprise.service.GenericService;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
 
 
     @Override
-    public void inserir(Departamento departamento) {
+    public Funcionario inserir(Departamento departamento) {
         try {
             departamentoDAO.salvar(departamento, getEntityManager());
         } catch (Exception e) {
@@ -35,6 +36,7 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
         } finally {
             closeEntityManager();
         }
+        return null;
     }
 
     @Override
