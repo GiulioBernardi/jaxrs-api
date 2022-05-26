@@ -21,7 +21,7 @@ public class Funcionario implements Serializable {
     @Column(name = "ds_foto_funcionario")
     private String foto;
 
-    @Column(name = "ds_rg_funcionario", length = 15, nullable = false, updatable = false)
+    @Column(name = "ds_rg_funcionario", length = 15, nullable = false)
     private String rg;
 
     @ManyToOne
