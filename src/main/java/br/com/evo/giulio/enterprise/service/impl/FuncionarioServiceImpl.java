@@ -1,8 +1,7 @@
 package br.com.evo.giulio.enterprise.service.impl;
 
-import br.com.evo.giulio.enterprise.dao.impl.DepartamentoDAOImpl;
 import br.com.evo.giulio.enterprise.dao.impl.FuncionarioDAOImpl;
-import br.com.evo.giulio.enterprise.model.Departamento;
+import br.com.evo.giulio.enterprise.exception.NotFound;
 import br.com.evo.giulio.enterprise.model.Funcionario;
 import br.com.evo.giulio.enterprise.service.GenericService;
 
@@ -27,7 +26,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     }
 
     @Override
-    public void inserir(Funcionario funcionario) {
+    public Funcionario inserir(Funcionario funcionario) {
         try {
             funcionarioDAO.salvar(funcionario, getEntityManager());
         } catch (Exception e) {
@@ -36,6 +35,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         } finally {
             closeEntityManager();
         }
+        return funcionario;
     }
 
     @Override
@@ -74,6 +74,9 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
             closeEntityManager();
         }
 
+        if(funcionario == null){
+            throw new NotFound("Funcionario com id " + id + " não encontrado");
+        }
         return funcionario;
     }
 
@@ -89,6 +92,9 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
             closeEntityManager();
         }
 
+        if(funcionarios == null){
+            throw new NotFound("Nenhum funcionario encontrado");
+        }
         return funcionarios;
     }
 
@@ -113,7 +119,9 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         } finally {
             closeEntityManager();
         }
-
+        if(funcionarios == null){
+            throw new NotFound("Nenhum funcionario encontrado");
+        }
         return funcionarios;
     }
 }

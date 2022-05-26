@@ -1,6 +1,7 @@
 package br.com.evo.giulio.enterprise.service;
 
 import br.com.evo.giulio.enterprise.dao.PersistenceManager;
+import br.com.evo.giulio.enterprise.model.Funcionario;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -10,7 +11,7 @@ public abstract class GenericService<T extends Serializable, PK extends Serializ
 
     private EntityManager entityManager = null;
 
-    public abstract void inserir(T instance);
+    public abstract Funcionario inserir(T instance);
 
     public abstract void atualizar(T instance);
 
