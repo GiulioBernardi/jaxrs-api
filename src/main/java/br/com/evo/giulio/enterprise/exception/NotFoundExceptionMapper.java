@@ -4,7 +4,6 @@ import br.com.evo.giulio.enterprise.model.ErroMensagem;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import org.glassfish.jersey.internal.Errors;
 
 @Provider
 public class NotFoundExceptionMapper implements ExceptionMapper<NotFound> {

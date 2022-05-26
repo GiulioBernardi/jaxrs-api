@@ -39,7 +39,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     }
 
     @Override
-    public void atualizar(Funcionario funcionario) {
+    public Funcionario atualizar(Funcionario funcionario) {
         try {
             funcionarioDAO.atualizar(funcionario, getEntityManager());
         } catch (Exception e) {
@@ -48,6 +48,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         } finally {
             closeEntityManager();
         }
+        return funcionario;
     }
 
     @Override

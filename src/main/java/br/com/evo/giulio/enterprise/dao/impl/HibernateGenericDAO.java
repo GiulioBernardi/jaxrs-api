@@ -4,7 +4,6 @@ import br.com.evo.giulio.enterprise.dao.GenericDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 

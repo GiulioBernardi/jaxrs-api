@@ -1,6 +1,5 @@
 package br.com.evo.giulio.enterprise.dao.impl;
 
-import br.com.evo.giulio.enterprise.model.Departamento;
 import br.com.evo.giulio.enterprise.model.Funcionario;
 
 import javax.persistence.EntityManager;
