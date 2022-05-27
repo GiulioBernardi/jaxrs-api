@@ -42,6 +42,10 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
+    public Funcionario(String rg) {
+        this.rg = rg;
+    }
+
     public Funcionario(Long id, String nome, String foto, String rg, Departamento departamento, Boolean status) {
         this.id = id;
         this.nome = nome;
@@ -89,5 +93,11 @@ public class Funcionario implements Serializable {
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.getRg();
     }
 }

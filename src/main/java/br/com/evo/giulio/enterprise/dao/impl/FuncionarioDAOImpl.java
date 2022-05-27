@@ -38,4 +38,12 @@ public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
         return consulta.getResultList();
     }
 
+    public List<Funcionario> listarRgs(EntityManager entityManager){
+        String jpql = "SELECT new Funcionario(f.rg) FROM Funcionario f";
+
+        Query consulta = entityManager.createQuery(jpql, Funcionario.class);
+
+        return consulta.getResultList();
+    }
+
 }
