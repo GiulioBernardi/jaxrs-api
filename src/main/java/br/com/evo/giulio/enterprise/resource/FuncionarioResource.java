@@ -1,6 +1,5 @@
 package br.com.evo.giulio.enterprise.resource;
 
-import br.com.evo.giulio.enterprise.model.Departamento;
 import br.com.evo.giulio.enterprise.model.Funcionario;
 import br.com.evo.giulio.enterprise.service.impl.FuncionarioServiceImpl;
 import jakarta.ws.rs.*;
@@ -35,9 +34,12 @@ public class FuncionarioResource {
     @Path("/{funcionarioId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void atualizar(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario){
+    public Response atualizar(@PathParam("funcionarioId") Long funcionarioId, Funcionario funcionario, @Context UriInfo uriInfo){
         funcionario.setId(funcionarioId);
-        funcionarioService.atualizar(funcionario);
+        Funcionario funcionarioAtualizado = funcionarioService.atualizar(funcionario);
+        String id = String.valueOf(funcionarioAtualizado.getId());
+        URI uri = uriInfo.getAbsolutePathBuilder().path(id).build();
+        return Response.ok(uri).entity(funcionarioAtualizado).build();
     }
 
     @GET

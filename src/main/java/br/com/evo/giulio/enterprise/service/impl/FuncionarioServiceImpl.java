@@ -1,14 +1,18 @@
 package br.com.evo.giulio.enterprise.service.impl;
 
 import br.com.evo.giulio.enterprise.dao.impl.FuncionarioDAOImpl;
+import br.com.evo.giulio.enterprise.exception.AlreadyExists;
 import br.com.evo.giulio.enterprise.exception.NotFound;
 import br.com.evo.giulio.enterprise.model.Funcionario;
 import br.com.evo.giulio.enterprise.service.GenericService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     private static FuncionarioServiceImpl instance = null;
+
+    boolean erro;
 
     private FuncionarioDAOImpl funcionarioDAO;
 
@@ -27,19 +31,37 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
 
     @Override
     public Funcionario inserir(Funcionario funcionario) {
+        List<Funcionario> rgsExistentes = new ArrayList<>();
         try {
-            funcionarioDAO.salvar(funcionario, getEntityManager());
+
         } catch (Exception e) {
             e.printStackTrace();
             getEntityManager().getTransaction().rollback();
         } finally {
             closeEntityManager();
         }
+
+        rgsExistentes = funcionarioDAO.listarRgs(getEntityManager());
+
+        for(int i=0; i<rgsExistentes.size(); i++){
+            boolean existe = rgsExistentes.get(i).toString().equals(funcionario.getRg().toString());
+
+            if(existe){
+                erro = true;
+                throw new AlreadyExists("Esse funcionario já existe!");
+            }else{
+                erro = false;
+            }
+        }
+        if(erro == false){
+            funcionarioDAO.salvar(funcionario, getEntityManager());
+        }
         return funcionario;
+
     }
 
     @Override
-    public void atualizar(Funcionario funcionario) {
+    public Funcionario atualizar(Funcionario funcionario) {
         try {
             funcionarioDAO.atualizar(funcionario, getEntityManager());
         } catch (Exception e) {
@@ -48,6 +70,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         } finally {
             closeEntityManager();
         }
+        return funcionario;
     }
 
     @Override

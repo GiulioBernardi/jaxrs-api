@@ -1,7 +1,6 @@
 package br.com.evo.giulio.enterprise.resource;
 
 import br.com.evo.giulio.enterprise.model.Departamento;
-import br.com.evo.giulio.enterprise.service.DepartamentoService;
 import br.com.evo.giulio.enterprise.service.impl.DepartamentoServiceImpl;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

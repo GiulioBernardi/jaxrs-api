@@ -4,7 +4,6 @@ package br.com.evo.giulio.enterprise.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement

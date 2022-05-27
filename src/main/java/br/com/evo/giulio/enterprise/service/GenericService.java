@@ -13,7 +13,7 @@ public abstract class GenericService<T extends Serializable, PK extends Serializ
 
     public abstract Funcionario inserir(T instance);
 
-    public abstract void atualizar(T instance);
+    public abstract Funcionario atualizar(T instance);
 
     public abstract void remover(Long id);
 

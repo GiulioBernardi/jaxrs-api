@@ -40,7 +40,7 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
     }
 
     @Override
-    public void atualizar(Departamento departamento) {
+    public Funcionario atualizar(Departamento departamento) {
         try {
             departamentoDAO.atualizar(departamento, getEntityManager());
         } catch (Exception e) {
@@ -49,6 +49,7 @@ public class DepartamentoServiceImpl extends GenericService<Departamento, Long> 
         } finally {
             closeEntityManager();
         }
+        return null;
     }
 
     @Override

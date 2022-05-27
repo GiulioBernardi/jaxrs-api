@@ -1,6 +1,5 @@
 package br.com.evo.giulio.enterprise.dao.impl;
 
-import br.com.evo.giulio.enterprise.model.Departamento;
 import br.com.evo.giulio.enterprise.model.Funcionario;
 
 import javax.persistence.EntityManager;
@@ -35,6 +34,14 @@ public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
 
         TypedQuery<Funcionario> consulta = entityManager.createQuery(jpql, Funcionario.class);
         consulta.setParameter("status", true);
+
+        return consulta.getResultList();
+    }
+
+    public List<Funcionario> listarRgs(EntityManager entityManager){
+        String jpql = "SELECT new Funcionario(f.rg) FROM Funcionario f";
+
+        Query consulta = entityManager.createQuery(jpql, Funcionario.class);
 
         return consulta.getResultList();
     }
