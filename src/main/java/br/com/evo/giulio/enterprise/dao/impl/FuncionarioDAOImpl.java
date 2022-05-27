@@ -46,4 +46,12 @@ public class FuncionarioDAOImpl extends HibernateGenericDAO<Funcionario, Long>{
         return consulta.getResultList();
     }
 
+    public Funcionario verificaParaDeletar(Long id, EntityManager entityManager){
+        String jpql = "SELECT f FROM Funcionario f WHERE id = :id";
+        TypedQuery<Funcionario> consulta = entityManager.createQuery(jpql, Funcionario.class);
+        consulta.setParameter("id", id);
+        return consulta.getSingleResult();
+
+    }
+
 }

@@ -45,8 +45,10 @@ public class FuncionarioResource {
     @GET
     @Path("/{funcionarioId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Funcionario obter(@PathParam("funcionarioId") Long id){
-        return funcionarioService.obter(id);
+    public Response obter(@PathParam("funcionarioId") Long id, @Context UriInfo uriInfo){
+        Funcionario funcionario = funcionarioService.obter(id);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
+        return Response.ok(uri).entity(funcionario).build();
     }
 
     @DELETE

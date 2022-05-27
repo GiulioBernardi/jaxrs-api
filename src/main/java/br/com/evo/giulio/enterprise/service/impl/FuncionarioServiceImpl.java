@@ -122,8 +122,17 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     }
 
     public void logicalDelete(Long id){
-        try {
+        Funcionario funcionarioParaDeletar = funcionarioDAO.verificaParaDeletar(id, getEntityManager());
+        System.out.println(funcionarioParaDeletar.getStatus());
+
+        if(funcionarioParaDeletar.getStatus() == false){
+            throw new NotFound("Funcionário não encontrado, provavelmente esse usuário já foi deletado");
+        }else{
             funcionarioDAO.logicalDelete(id, getEntityManager());
+        }
+
+        try {
+
         } catch (Exception e) {
             e.printStackTrace();
             getEntityManager().getTransaction().rollback();
