@@ -54,8 +54,10 @@ public class FuncionarioResource {
     @DELETE
     @Path("/{funcionarioId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void remover(@PathParam("funcionarioId") Long id){
-        funcionarioService.logicalDelete(id);
+    public Response remover(@PathParam("funcionarioId") Long id, @Context UriInfo uriInfo){
+        Funcionario funcionario = funcionarioService.logicalDelete(id);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(id)).build();
+        return Response.ok(uri).entity(funcionario).build();
     }
 
 }

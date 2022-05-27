@@ -32,14 +32,6 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     @Override
     public Funcionario inserir(Funcionario funcionario) {
         List<Funcionario> rgsExistentes = new ArrayList<>();
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            getEntityManager().getTransaction().rollback();
-        } finally {
-            closeEntityManager();
-        }
 
         rgsExistentes = funcionarioDAO.listarRgs(getEntityManager());
 
@@ -56,6 +48,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         if(erro == false){
             funcionarioDAO.salvar(funcionario, getEntityManager());
         }
+        closeEntityManager();
         return funcionario;
 
     }
@@ -121,7 +114,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         return funcionarios;
     }
 
-    public void logicalDelete(Long id){
+    public Funcionario logicalDelete(Long id){
         Funcionario funcionarioParaDeletar = funcionarioDAO.verificaParaDeletar(id, getEntityManager());
         System.out.println(funcionarioParaDeletar.getStatus());
 
@@ -130,15 +123,8 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
         }else{
             funcionarioDAO.logicalDelete(id, getEntityManager());
         }
-
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            getEntityManager().getTransaction().rollback();
-        } finally {
-            closeEntityManager();
-        }
+        closeEntityManager();
+        return funcionarioParaDeletar;
     }
 
     public List<Funcionario> logicalList(){
