@@ -12,6 +12,8 @@ import java.util.List;
 public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     private static FuncionarioServiceImpl instance = null;
 
+    boolean erro;
+
     private FuncionarioDAOImpl funcionarioDAO;
 
     private FuncionarioServiceImpl() {
@@ -31,7 +33,7 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
     public Funcionario inserir(Funcionario funcionario) {
         List<Funcionario> rgsExistentes = new ArrayList<>();
         try {
-            funcionarioDAO.salvar(funcionario, getEntityManager());
+
         } catch (Exception e) {
             e.printStackTrace();
             getEntityManager().getTransaction().rollback();
@@ -45,13 +47,17 @@ public class FuncionarioServiceImpl extends GenericService<Funcionario, Long> {
             boolean existe = rgsExistentes.get(i).toString().equals(funcionario.getRg().toString());
 
             if(existe){
-                boolean erro = true;
+                erro = true;
                 throw new AlreadyExists("Esse funcionario já existe!");
-
+            }else{
+                erro = false;
             }
         }
-
+        if(erro == false){
+            funcionarioDAO.salvar(funcionario, getEntityManager());
+        }
         return funcionario;
+
     }
 
     @Override
