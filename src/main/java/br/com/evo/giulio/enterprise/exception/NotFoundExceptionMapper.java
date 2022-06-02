@@ -10,7 +10,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFound> {
 
     @Override
     public Response toResponse(NotFound exception) {
-        ErroMensagem errorMessage = new ErroMensagem (exception.getMessage(), 404, "link para a documentação");
+        ErroMensagem errorMessage = new ErroMensagem (exception.getMessage(), 500, "link para a documentação");
         return Response.status(Response.Status.NOT_FOUND)
                 .entity(errorMessage)
                 .build();
