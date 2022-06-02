@@ -10,7 +10,7 @@ public class AlreadyExistsExceptionMapper implements ExceptionMapper<AlreadyExis
 
     @Override
     public Response toResponse(AlreadyExists exception) {
-        ErroMensagem erroMensagem = new ErroMensagem(exception.getMessage(), 409, "Link para a documentação");
+        ErroMensagem erroMensagem = new ErroMensagem(exception.getMessage(), 500, "Link para a documentação");
         return Response.status(Response.Status.CONFLICT).entity(erroMensagem).build();
     }
 }
